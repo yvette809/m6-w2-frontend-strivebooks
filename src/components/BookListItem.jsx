@@ -5,7 +5,6 @@ class BookListItem extends Component {
     render() {
 
         const { asin, title, img, price, category} = this.props.item
-
         return (
             <Col md={4}>
                 <Card >

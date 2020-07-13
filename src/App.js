@@ -37,6 +37,12 @@ class App extends React.Component {
     this.setState({
       books: books
     })
+
+    // const cartRes = await fetch("https://striveschool-api.herokuapp.com/books")
+    // const cart = await res.json()
+    // this.setState({
+    //   cart: cart
+    // })
   }
 }
 
