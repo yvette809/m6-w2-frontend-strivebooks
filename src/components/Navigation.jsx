@@ -4,7 +4,7 @@ import { Cart4 } from "react-bootstrap-icons"
 import { Link } from "react-router-dom"
 
 
-function Navigation({ cart }) {
+function Navigation({ cart, query, onSeachQueryUpdated,onSearchClicked }) {
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand><Link to="/" style={{ color: "black"}}>Strive Library</Link></Navbar.Brand>
@@ -13,9 +13,8 @@ function Navigation({ cart }) {
                 <Nav className="mr-auto">
                 </Nav>
                 <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                    
+                    <FormControl value={query} onChange={(event)=> onSeachQueryUpdated(event.currentTarget.value)} type="text" placeholder="Search" className="mr-sm-2" />
+                    <Button variant="outline-success" onClick={onSearchClicked}>Search</Button>
                 </Form>
                 <Link to="/cart" className="justify-content-center d-flex mx-3" style={{ color: "black"}}>
                 <Badge pill variant={cart.length ? "danger" : "secondary"}>

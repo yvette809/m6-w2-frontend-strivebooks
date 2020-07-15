@@ -7,7 +7,9 @@ class BookList extends Component {
         return (
             <Container className="my-5">
                 <Row>
-                    {this.props.books.slice(0,30).map(x => <BookListItem key={x.asin} item={x} />)}
+                    {this.props.books.slice(0,30).map(x => <BookListItem
+                         onBookAddedToCart={this.props.onBookAddedToCart}
+                         key={x.asin} item={x} />)}
                 </Row>
             </Container>
         )

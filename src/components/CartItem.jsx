@@ -26,10 +26,18 @@ class CartItem extends Component {
         return "success";
     }
 
+    removeItem = async () =>{
+        const resp = await fetch("http://localhost:3456/cart/1/" + this.props.item.asin, {
+            method: "DELETE"
+        })
+
+        if (resp.ok)
+            this.props.onBookRemovedFromCart(this.props.item.asin)
+    }
 
     render() {
 
-        const { title, img, category, asin, price } = this.props.item
+        const { title, img, category, asin, unitary_price } = this.props.item
 
         return (
             <Media>
@@ -43,13 +51,13 @@ class CartItem extends Component {
                 <Media.Body>
                     <h5 className="d-flex justify-content-between">
                         {title} 
-                        <Button variant="danger" className="ml-5"><CartDash /></Button></h5>
+                        <Button variant="danger" className="ml-5" onClick={this.removeItem}><CartDash /></Button></h5>
                     <p>
                         <Badge pill variant={this.categoryToColor(category)} className="mr-3">
                             {category}
                         </Badge>
-                        <Badge pill variant={this.priceToColor(price)}>
-                            € {price}
+                        <Badge pill variant={this.priceToColor(unitary_price)}>
+                            € {unitary_price}
                         </Badge>
                         
                     </p>
