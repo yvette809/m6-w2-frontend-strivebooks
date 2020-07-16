@@ -8,6 +8,7 @@ class BookList extends Component {
             <Container className="my-5">
                 <Row>
                     {this.props.books.slice(0,30).map(x => <BookListItem
+                         onImageClicked={this.props.onImageClicked}
                          onBookAddedToCart={this.props.onBookAddedToCart}
                          key={x.asin} item={x} />)}
                 </Row>

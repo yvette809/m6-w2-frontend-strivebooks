@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Cart from "./components/Cart"
 import { Button, Row } from 'react-bootstrap';
 import { DashCircleFill, PlusCircleFill } from "react-bootstrap-icons"
+import SearchField from './components/SearchField';
 
 
 
@@ -17,7 +18,8 @@ class App extends React.Component {
     cart: [],
     page: 0,
     pageSize: 12,
-    searchQuery: ""
+    searchQuery: "",
+    navigationTitle: "Strive Library"
   }
 
   setPage = async (page) => {
@@ -42,8 +44,7 @@ class App extends React.Component {
       })
     }
     else{
-      const res = await fetch(`http://localhost:3456/books/${asin}`)
-      const book = await res.json()
+      const book = this.state.books.find(book => book.asin === asin)
       this.setState({
         cart: [...this.state.cart, {
           asin: book.asin,
@@ -82,11 +83,14 @@ class App extends React.Component {
     return (
       <Router>
         <Navigation 
+          title={this.state.navigationTitle}
           cart={this.state.cart}
           query={this.state.searchQuery}
           onSeachQueryUpdated={(value) => this.setState({ searchQuery: value })}
           onSearchClicked={this.fetchData}
         />
+        {/* <SearchField /> */}
+
         <Switch>
           <Route path="/" exact >
             <Row className="my-4 justify-content-center">
@@ -94,7 +98,8 @@ class App extends React.Component {
               <Button variant="success"  onClick={() => this.setPage(this.state.page + 1)}><PlusCircleFill /></Button>
             </Row>
             <BookList
-             onBookAddedToCart={this.handleBookAddedToCartOnline}
+             onImageClicked={(newValue) => this.setState({navigationTitle: newValue})}
+             onBookAddedToCart={this.handleBookAddedToCard}
              books={this.state.books} />
           </Route>
           <Route path="/cart" exact >

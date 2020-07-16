@@ -4,10 +4,10 @@ import { Cart4 } from "react-bootstrap-icons"
 import { Link } from "react-router-dom"
 
 
-function Navigation({ cart, query, onSeachQueryUpdated,onSearchClicked }) {
+function Navigation({ cart, query, onSeachQueryUpdated,onSearchClicked,title }) {
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand><Link to="/" style={{ color: "black"}}>Strive Library</Link></Navbar.Brand>
+            <Navbar.Brand><Link to="/" style={{ color: "black"}}>{title}</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

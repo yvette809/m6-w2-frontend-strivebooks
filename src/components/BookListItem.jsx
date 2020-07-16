@@ -26,7 +26,7 @@ class BookListItem extends Component {
         return (
             <Col md={4}>
                 <Card >
-                <Card.Img variant="top" src={img} />
+                <Card.Img variant="top" src={img} onClick={() => this.props.onImageClicked(title)} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
